@@ -23,6 +23,9 @@
 //+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=
 
 //==============================GENERAL========================================
+
+
+
 var canvas;
 var ctx;
 
@@ -417,3 +420,63 @@ function rgb2hex(rgb){
   ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
   ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
 }
+
+
+//================================jQuery========================================
+
+
+$(document).ready(function(){
+ //If JS is enabled add a class so we can hide the form ASAP (and only for JS enabled browsers)
+document.documentElement.className = 'js';
+//add the jQuery click/show/hide behaviours:
+
+     $(".reply").click(function(){
+         if($("#dropDown1").is(":visible")){
+           $("#dropDown1").hide();
+        } else {
+           $("#dropDown1").show();
+        }
+        //don't follow the link (optional, seen as the link is just an anchor)
+        return false;
+     });
+
+document.documentElement.className = 'js';
+//add the jQuery click/show/hide behaviours:
+
+     $(".reply").click(function(){
+         if($("#dropDown2").is(":visible")){
+           $("#dropDown2").hide();
+        } else {
+           $("#dropDown2").show();
+        }
+        //don't follow the link (optional, seen as the link is just an anchor)
+        return false;
+     });
+
+document.documentElement.className = 'js';
+//add the jQuery click/show/hide behaviours:
+
+     $(".reply").click(function(){
+         if($("#dropDown3").is(":visible")){
+           $("#dropDown3").hide();
+        } else {
+           $("#dropDown3").show();
+        }
+        //don't follow the link (optional, seen as the link is just an anchor)
+        return false;
+     })
+
+document.documentElement.className = 'js';
+//add the jQuery click/show/hide behaviours:
+
+     $(".reply").click(function(){
+         if($("#dropDown4").is(":visible")){
+           $("#dropDown4").hide();
+        } else {
+           $("#dropDown4").show();
+        }
+        //don't follow the link (optional, seen as the link is just an anchor)
+        return false;
+     });
+
+});
