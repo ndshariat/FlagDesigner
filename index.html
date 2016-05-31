@@ -1,3 +1,4 @@
+
 <!doctype html>
 <!--
   index.html
@@ -15,7 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 
     <!-- fmaker.js handles the bulk (if not all) of the canvas implementation -->
-    <script src="fmaker.js"></script>
+    <script src="flag.js"></script>
 
     <title>FLAG MAKER</title>
   </head>
@@ -25,7 +26,9 @@
     <br>
     <br>
 
-    Ratio:
+<a class="reply" href="#dropDown1">Change Size and Background</a>
+<form id="dropDown1">
+    Size:
     <select name = "ratio" onchange = "setRatio(this)">
       <option value="0">1:1</option>
       <option value="1">13:15</option>
@@ -52,12 +55,12 @@
       <option value="5">BiBar Vertical</option>
       <option value="6">Blank</option>
     </select>
-
+</form>
     <br>
     <br>
 
-    Checkered
-
+<a class="reply" href="#dropDown2">Checkered</a>
+<form id="dropDown2">
     <br>
 
     Column:
@@ -67,35 +70,41 @@
 
     <br>
     <br>
+</form>
+   <br>
+   <br>
+
+
+
 
     Tricolor
 
     <br>
 
-    Vertical Ratio
+<a class="reply" href="#dropDown3">Vertical Ratio</a>
 
     <br>
-
+<form id="dropDown3">
     Bar One Height:
     <input type="number" name="barOneH" min="1" max="20" onchange = "setBarOneH(this)" value="1">
     Bar Two Height:
     <input type="number" name="barTwoH" min="1" max="20" onchange = "setBarTwoH(this)" value="1">
     Bar Three Height:
     <input type="number" name="barThreeH" min="1" max="20" onchange = "setBarThreeH(this)" value="1">
-
+</form>
     <br>
 
-    Horizontal Ratio
+<a class="reply" href="#dropDown4">Horizontal Ratio</a>
 
     <br>
-
+<form id="dropDown4">
     Bar One Width:
     <input type="number" name="barOneW" min="0" max="20" onchange = "setBarOneW(this)" value="1">
     Bar Two Width:
     <input type="number" name="barTwoW" min="0" max="20" onchange = "setBarTwoW(this)" value="1">
     Bar Three Width:
     <input type="number" name="barThreeW" min="0" max="20" onchange = "setBarThreeW(this)" value="1">
-
+</form>
     <a target="_blank" href="style.css"><div class="reveal1">CSS</div></a>
     <a target="_blank" href="fmaker.js"><div class="reveal2">JS</div></a>
   </body>
