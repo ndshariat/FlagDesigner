@@ -159,6 +159,21 @@ function renderBackground(){
      break;
     case 1:
      console.log("checkered");
+     colorOneH = rgb2hex(colorOne);
+     colorTwoH = rgb2hex(colorTwo);
+     ctx.fillStyle = colorOneH;
+     ctx.fillRect(0,0,canvas.width,canvas.height); //draws background
+     //sets second color, which will draw rects based on number of rows and
+     //columns to generate the checkered effect
+     ctx.fillStyle = colorTwoH;
+     for(var j = 0; j<numRow; j+=2){
+       console.log("in row")
+       for(var i = 0; i<numCol; i++){
+         console.log(i); //debug
+         ctx.fillRect(2*i*(canvas.width/numCol),(canvas.height/numRow)*j,canvas.width/numCol,canvas.height/numRow);
+         ctx.fillRect((2*i*(canvas.width/numCol))+(canvas.width/numCol),(canvas.height/numRow)*(j+1),canvas.width/numCol,canvas.height/numRow);
+       }
+     }
      break;
     case 2:
      console.log("tricolor horizontal");
