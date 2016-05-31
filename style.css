@@ -1,0 +1,24 @@
+/*
+  style.css
+  Nima Shariat
+  Owen Thomas
+  Aren Williams
+  ART 101 - S16
+  Final
+*/
+
+.reveal1{
+  position:fixed;
+  bottom: 0;
+  right: 45px;
+}
+
+.reveal2{
+  position: fixed;
+  bottom:0;
+  right: 10px;
+}
+
+canvas {
+  border: 1px solid red;
+}

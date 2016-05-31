@@ -1,0 +1,102 @@
+<!doctype html>
+<!--
+  index.html
+  Nima Shariat
+  Owen Thomas
+  Aren Williams
+  ART 101 - s16
+  Final
+-->
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Frijole|Love+Ya+Like+A+Sister|Schoolbell' rel='stylesheet' type='text/css'>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+
+    <!-- fmaker.js handles the bulk (if not all) of the canvas implementation -->
+    <script src="fmaker.js"></script>
+
+    <title>FLAG MAKER</title>
+  </head>
+  <body onload="main()">
+    <canvas id="canvas"></canvas>
+
+    <br>
+    <br>
+
+    Ratio:
+    <select name = "ratio" onchange = "setRatio(this)">
+      <option value="0">1:1</option>
+      <option value="1">13:15</option>
+      <option value="2">4:5</option>
+      <option value="3">28:37</option>
+      <option value="4">3:4</option>
+      <option value="5">8:11</option>
+      <option value="6">18:25</option>
+      <option value="7">2:3</option>
+      <option value="8">5:8</option>
+      <option value="9">3:5</option>
+      <option value="10">10:19</option>
+      <option value="11">1:2</option>
+      <option value="12">11:28</option>
+    </select>
+
+    Background:
+    <select name = "background" onchange = "setBackground(this)">
+      <option value="0">Uniform</option>
+      <option value="1">Checkered</option>
+      <option value="2">TriColor Horizontal</option>
+      <option value="3">TriColor Vertical</option>
+      <option value="4">BiBar Horizontal</option>
+      <option value="5">BiBar Vertical</option>
+      <option value="6">Blank</option>
+    </select>
+
+    <br>
+    <br>
+
+    Checkered
+
+    <br>
+
+    Column:
+    <input type="number" name="columns" min="1" max="20" onchange = "setColumn(this)" value="4">
+    Row:
+    <input type="number" name="row" min="1" max="20" onchange = "setRow(this)" value="4">
+
+    <br>
+    <br>
+
+    Tricolor
+
+    <br>
+
+    Vertical Ratio
+
+    <br>
+
+    Bar One Height:
+    <input type="number" name="barOneH" min="1" max="20" onchange = "setBarOneH(this)" value="1">
+    Bar Two Height:
+    <input type="number" name="barTwoH" min="1" max="20" onchange = "setBarTwoH(this)" value="1">
+    Bar Three Height:
+    <input type="number" name="barThreeH" min="1" max="20" onchange = "setBarThreeH(this)" value="1">
+
+    <br>
+
+    Horizontal Ratio
+
+    <br>
+
+    Bar One Width:
+    <input type="number" name="barOneW" min="0" max="20" onchange = "setBarOneW(this)" value="1">
+    Bar Two Width:
+    <input type="number" name="barTwoW" min="0" max="20" onchange = "setBarTwoW(this)" value="1">
+    Bar Three Width:
+    <input type="number" name="barThreeW" min="0" max="20" onchange = "setBarThreeW(this)" value="1">
+
+    <a target="_blank" href="style.css"><div class="reveal1">CSS</div></a>
+    <a target="_blank" href="fmaker.js"><div class="reveal2">JS</div></a>
+  </body>
+</html>
