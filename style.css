@@ -6,6 +6,18 @@
   ART 101 - S16
   Final
 */
+#dropDown1{
+border: 1px dotted black;
+}
+#dropDown2{
+border: 1px dotted black;
+}
+#dropDown3{
+border: 1px dotted black;
+}
+#dropDown4{
+border: 1px dotted black;
+}
 
 .reveal1{
   position:fixed;
@@ -20,5 +32,5 @@
 }
 
 canvas {
-  border: 1px solid red;
+  border: 1px solid black;
 }
