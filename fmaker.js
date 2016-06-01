@@ -206,7 +206,21 @@ function renderBackground(){
      console.log("bibar vertical");
      break;
     case 6:
-     console.log("");
+     console.log("cross");
+     var lWidth = 40; //here would be user input
+     var horOff = 0; //here would be user input
+     var verOff = 0; //here would be user input
+     colorOneH = rgb2hex(colorOne);
+     ctx.fillStyle = colorOneH;
+     ctx.fillRect(0, 0, canvas.width, canvas.height);
+     ctx.strokeStyle = colorTwoH;
+     ctx.beginPath();
+     ctx.lineWidth = lWidth;
+     ctx.moveTo(0,(canvas.height/2)+verOff);
+     ctx.lineTo(canvas.width, (canvas.height/2)+verOff);
+     ctx.moveTo((canvas.width/2)+horOff, 0);
+     ctx.lineTo((canvas.width/2)+horOff, canvas.height);
+     ctx.stroke();
      break;
   }
 }
