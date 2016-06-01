@@ -553,3 +553,18 @@ document.documentElement.className = 'js';
      });
 
 });
+
+document.documentElement.className = 'js';
+//add the jQuery click/show/hide behaviours:
+
+     $(".reply").click(function(){
+         if($("#dropDown5").is(":visible")){
+           $("#dropDown5").hide();
+        } else {
+           $("#dropDown5").show();
+        }
+        //don't follow the link (optional, seen as the link is just an anchor)
+        return false;
+     });
+
+});
