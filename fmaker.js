@@ -144,6 +144,7 @@ function main(){
 function render(){
   //redraws the background. Think of this as a pallette cleanser for the rest of
   //the drawings to build on top.
+  ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   canvas.width = canvasW;
   canvas.height = canvasH;
   console.log(canvasW);
@@ -552,7 +553,6 @@ document.documentElement.className = 'js';
         return false;
      });
 
-});
 
 document.documentElement.className = 'js';
 //add the jQuery click/show/hide behaviours:
@@ -568,3 +568,4 @@ document.documentElement.className = 'js';
      });
 
 });
+
