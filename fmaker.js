@@ -105,6 +105,13 @@ var barTwoH = 1/2;
 var barOneW = 1/2;
 var barTwoW = 1/2;
 
+//===================================CROSS======================================
+
+var crossWidth = 40; //the thickness of the cross
+var crossVerOff = 0; //the offset of the across line
+var crossHorOff = 0; //the offset of the up-down line
+
+
 
 
 //+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=
@@ -211,22 +218,24 @@ function renderBackground(){
      colorTwoH = rgb2hex(colorTwo);
      colorThreeH = rgb2hex(colorThree);
 //===================================CROSS======================================
-     /*var lWidth = 40; //here would be user input
-     var horOff = 0; //here would be user input
-     var verOff = 0; //here would be user input
+     //var crossWidth = 40; //here would be user input
+     //var crossHorOff = 0; //here would be user input
+     //var crossVerOff = 0; //here would be user input
      ctx.fillStyle = colorOneH;
      ctx.fillRect(0, 0, canvas.width, canvas.height);
      ctx.strokeStyle = colorTwoH;
      ctx.beginPath();
-     ctx.lineWidth = lWidth;
-     ctx.moveTo(0,(canvas.height/2)+verOff);
-     ctx.lineTo(canvas.width, (canvas.height/2)+verOff);
-     ctx.moveTo((canvas.width/2)+horOff, 0);
-     ctx.lineTo((canvas.width/2)+horOff, canvas.height);
-     ctx.stroke();*/
+     ctx.lineWidth = crossWidth;
+     ctx.moveTo(0,(canvas.height/2)+crossVerOff);
+     ctx.lineTo(canvas.width, (canvas.height/2)+crossVerOff);
+     ctx.moveTo((canvas.width/2)+crossHorOff, 0);
+     ctx.lineTo((canvas.width/2)+crossHorOff, canvas.height);
+     ctx.stroke();
 //==============================================================================
 
      break;
+
+
   }
 }
 
@@ -262,7 +271,7 @@ function setBackground(backgroundValue){
      console.log("bibar vertical");
      break;
     case 6:
-     console.log("test");
+     console.log("");
      break;
   }
   render();
@@ -442,6 +451,36 @@ function setBarThreeW(barValue){
   console.log(bandOneWS);
   console.log(bandTwoWS);
   console.log(bandThreeWS);
+  render();
+}
+
+
+//==============================CROSS SETUP=====================================
+//handling for the cross: vertical and horizontal offset, and line width.
+
+
+//Horizontal Offset
+
+function setCrossHorOff(offValue){
+  crossHorOff = +offValue.value;
+  crossHorOff = crossHorOff * 20;
+  console.log(crossHorOff);
+  render();
+}
+
+//Horizontal Offset
+
+function setCrossVerOff(offValue){
+  crossVerOff = +offValue.value;
+  crossVerOff = crossVerOff * 20;
+  console.log(crossVerOff);
+  render();
+}
+
+function setCrossWidth(crossWidthValue){
+  crossWidth = +crossWidthValue.value;
+  crossWidth = crossWidth * 2;
+  console.log(crossWidth);
   render();
 }
 
