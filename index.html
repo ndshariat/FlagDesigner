@@ -1,4 +1,5 @@
 
+
 <!doctype html>
 <!--
   index.html
@@ -59,6 +60,8 @@
     <br>
     <br>
 
+
+
 <a class="reply" href="#dropDown2">Checkered</a>
 <form id="dropDown2">
     <br>
@@ -106,11 +109,10 @@
     <input type="number" name="barThreeW" min="0" max="20" onchange = "setBarThreeW(this)" value="1">
 </form>
 
-
 <br>
 <br>
 
-<a class="reply" href="#dropDown5">Cross</a>
+<!--<a class="reply" href="#dropDown5">Cross</a>
 
     <br>
 <form id="dropDown5">
@@ -120,7 +122,79 @@
     <input type="number" name="crossVerOff" min="-20" max="20" onchange = "setCrossVerOff(this)" value="0">
     Cross Width:
     <input type="number" name="crossWidth" min="1" max="200" onchange = "setCrossWidth(this)" value="20">
-</form>
+</form>-->
+
+<br>
+Overlay1:
+<br>
+<form>
+  <input type='checkbox' name='renderOne' onclick="setRender(this, 0)"> Render <br>
+  <select name = "overlayOneType" onchange = "setOverlayType(this, 0)">
+    <option value="0">Border</option>
+    <option value="1">Cross</option>
+    <option value="2">Canton</option>
+  </select>
+  <div id="borderOne">
+    Border: <br>
+    Width:
+    <input type="number" name="borderWidth" min="0" max="100" onchange = "setBorderWidth(this)" value="80">
+  </div>
+  <br>
+  <div id="crossOne">
+    Cross: <br>
+    Horizontal Offset:
+    <input type="number" name="crossHorOff" min="-20" max="20" onchange = "setCrossHorOff(this)" value="0">
+    Vertical Offset:
+    <input type="number" name="crossVerOff" min="-20" max="20" onchange = "setCrossVerOff(this)" value="0">
+    Cross Width:
+    <input type="number" name="crossWidth" min="1" max="200" onchange = "setCrossWidth(this)" value="20">
+  </div>
+  <br>
+
+  <div id="cantonOne">
+    Canton: <br>
+    Width:
+    <input type="number" name="cantonWidth" min="-20" max="20" onchange = "setCantonWidth(this)" value="0">
+    Height:
+    <input type="number" name="cantonHeight" min="-20" max="20" onchange = "setCantonHeight(this)" value="0">
+  </div>
+<form>
+
+<br>
+Overlay2:
+  <br>
+  <form>
+    <input type='checkbox' name='renderTwo' onclick="setRender(this, 1)"> Render <br>
+    <select name = "overlayTwoType" onchange = "setOverlayType(this, 1)">
+      <option value="0">Border</option>
+      <option value="1">Cross</option>
+      <option value="2">Canton</option>
+    </select>
+    <div id="borderTwo">
+      Border: <br>
+      Width:
+      <input type="number" name="borderWidth" min="0" max="100" onchange = "setBorderWidth(this)" value="80">
+    </div>
+    <br>
+    <div id="crossTwo">
+      Cross: <br>
+      Horizontal Offset:
+      <input type="number" name="crossHorOff" min="-20" max="20" onchange = "setCrossHorOff(this)" value="0">
+      Vertical Offset:
+      <input type="number" name="crossVerOff" min="-20" max="20" onchange = "setCrossVerOff(this)" value="0">
+      Cross Width:
+      <input type="number" name="crossWidth" min="1" max="200" onchange = "setCrossWidth(this)" value="20">
+    </div>
+    <br>
+
+    <div id="cantonTwo">
+      Canton: <br>
+      Width:
+      <input type="number" name="cantonWidth" min="-20" max="20" onchange = "setCantonWidth(this)" value="0">
+      Height:
+      <input type="number" name="cantonHeight" min="-20" max="20" onchange = "setCantonHeight(this)" value="0">
+    </div>
+  <form>
 
     <a target="_blank" href="style.css"><div class="reveal1">CSS</div></a>
     <a target="_blank" href="fmaker.js"><div class="reveal2">JS</div></a>
