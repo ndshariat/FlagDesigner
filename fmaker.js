@@ -7,7 +7,9 @@
 //Here is the javascript file for the flag maker. It handles all the canvas
 //drawing as well as all of the input handling.
 
-//NOTE FOR LATER: May want to handle BiBar and uniform color within checkered by
+
+//*****************************NOTES TO SELF************************************
+//May want to handle BiBar and uniform color within checkered by
 //having biBar be cases where either row or column is 2 and uniform would be 1.
 //Important thing about this though is that with this kind of implementation we
 //would lose the ability to fine tune the ratio between the bars (not a problem
@@ -22,7 +24,7 @@
 //==========================GLOBAL VARIABLES====================================
 //+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=+=---=
 
-//==============================GENERAL========================================
+//********************************GENERAL***************************************
 
 
 
@@ -56,6 +58,47 @@ console.log(colorThreeH);
 //   6:
 var backgroundType = 0; //default of checkered
 
+
+//object constructor for overlay.
+function overlay() {
+  /*if(type!=undefined){this.type = type; } //objectType object [default 0]
+  if(rendered!=undefined){this.rendered = rendered; } //binaryof if object is rendered 0 = not, 1 = rendered [default not]
+  if(index!=undefined){this.index = index;} //holds track of which overlay it is so that it can be referenced/checked bidirectionally [default 0]
+  */
+  this.type = 0;
+  this.rendered = 0;
+  this.index = 0;
+
+  //These are not to be confused with the global colors that effect background
+  //These will only effect that particular overlay.
+  this.colorOne = "rgb(255, 0, 0)";
+  this.colorTwo = "rgb(0, 255, 0)";
+  this.colorThree = "rgb(0, 0, 255)";
+  this.colorOneH = rgb2hex(colorOne); //hex version
+  this.colorTwoH = rgb2hex(colorTwo); //hex version
+  this.colorThreeH = rgb2hex(colorThree); //hex version
+};
+
+//where the list of objects will be held
+//will hold 10 empty objects once initObjects() is run
+var overlayArray = [];
+
+//These are the objects themselves (empty until initObjects is run)
+var overlayOne;
+var overlayTwo;
+var overlayThree;
+var overlayFour;
+var overlayFive;
+var overlaySix;
+var overlaySeven;
+var overlayEight;
+var overlayNine;
+var overlayTen;
+
+
+
+
+//******************************BACKGROUND**************************************
 
 //===============================CHECKER========================================
 //for checkered background
@@ -93,6 +136,8 @@ var bandTwoWS = (bandTwoW/ (bandOneW + bandTwoW + bandThreeW));
 var bandThreeWS = (bandThreeW/ (bandOneW + bandTwoW + bandThreeW));
 
 
+
+/*CURRENTLY DECIDING IF THIS SHOULD BE USED SINCE TRICOLOR MAKES THIS REDUNDANT
 //================================BIBAR=========================================
 
 //for horizontal BiBar
@@ -104,13 +149,53 @@ var barTwoH = 1/2;
 //carries the ratio between the two bars
 var barOneW = 1/2;
 var barTwoW = 1/2;
+*/
 
-//===================================CROSS======================================
 
-var crossWidth = 40; //the thickness of the cross
-var crossVerOff = 0; //the offset of the across line
-var crossHorOff = 0; //the offset of the up-down line
+//================================OVERLAYS======================================
 
+//border object
+function border(){
+  this.index = 0;
+  this.borderWidth = 80;
+  this.render = function(){
+    ctx.beginPath();
+    ctx.lineWidth= this.borderWidth;
+    ctx.strokeStyle = overlayArray[this.index].colorOneH;
+    ctx.rect(0,0,canvas.width,canvas.height);
+    ctx.stroke();
+  };
+}
+
+//cross object
+function cross(){
+  this.index = 0;
+  this.crossWidth = 40; //the thickness of the cross
+  this.crossVerOff = 0; //the offset of the across line
+  this.crossHorOff = 0; //the offset of the up-down line
+  this.render = function(){
+    ctx.strokeStyle = overlayArray[this.index].colorOneH; //change to object color
+    ctx.beginPath();
+    ctx.lineWidth = this.crossWidth;
+    ctx.moveTo(0,(canvas.height/2)+this.crossVerOff);
+    ctx.lineTo(canvas.width, (canvas.height/2)+this.crossVerOff);
+    ctx.moveTo((canvas.width/2)+this.crossHorOff, 0);
+    ctx.lineTo((canvas.width/2)+this.crossHorOff, canvas.height);
+    ctx.stroke();
+  }
+}
+
+
+//canton object
+function canton(){
+  this.index = 0;
+  this.cantonXScale = 10; //the scale of the width
+  this.cantonYScale = 10; //the scale of the height
+  this.render = function(){
+    ctx.fillStyle = overlayArray[this.index].colorOneH;
+    ctx.fillRect(0, 0, (canvas.width/2) * (this.cantonXScale/10), (canvas.height/2) * (this.cantonYScale/10));
+  }
+}
 
 
 
@@ -131,11 +216,61 @@ function main(){
   canvas.height = canvasH;
   console.log(canvas.height);
   console.log(canvas.width);
+  initOverlays();
   render();
 }
 
+//========================INITIALIZE OVERLAY OBJECTS============================
+// When called, it initializes 10 overlay objects and places them in order in
+// the overlayArray
+// Should only be called once in the main function.
 
-//================================RENDER========================================
+function initOverlays(){
+  overlayOne = new overlay();
+  overlayTwo = new overlay();
+  overlayThree = new overlay();
+  overlayFour = new overlay();
+  overlayFive = new overlay();
+  overlaySix = new overlay();
+  overlaySeven = new overlay();
+  overlayEight = new overlay();
+  overlayNine = new overlay();
+  overlayTen = new overlay();
+  overlayOne.index = 0;
+  overlayTwo.index = 1;
+  overlayThree.index = 2;
+  overlayFour.index = 3;
+  overlayFive.index = 4;
+  overlaySix.index = 5;
+  overlaySeven.index = 6;
+  overlayEight.index = 7;
+  overlayNine.index = 8;
+  overlayTen.index = 9;
+  overlayOne.rendered = 1;
+
+  overlayArray = [overlayOne, overlayTwo, overlayThree, overlayFour,
+                  overlayFive, overlaySix, overlaySeven, overlayEight,
+                  overlayNine];
+
+  //Debugging
+  console.log("testing initOverlays");
+  /*console.log(overlayOne);
+  console.log(overlayTwo);
+  console.log(overlayThree);
+  console.log(overlayFour);
+  console.log(overlayFive);
+  console.log(overlaySix);
+  console.log(overlaySeven);
+  console.log(overlayEight);
+  console.log(overlayNine);
+  console.log(overlayTen);*/
+  console.log(overlayArray);
+  console.log(overlayArray[3].index); //debug
+}
+
+
+
+//==================================RENDER======================================
 //This is where the bulk of the rendering takes place, whether it be by calling
 //funcitons from it, or explicitly drawing within it. Whenver a change is made,
 //this function should be called in order to redraw the flag with the new
@@ -147,9 +282,10 @@ function render(){
   ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   canvas.width = canvasW;
   canvas.height = canvasH;
-  console.log(canvasW);
-  console.log(canvas.width);
+  console.log(canvasW); //debug
+  console.log(canvas.width); //debug
   renderBackground();
+  renderOverlays();
 }
 
 
@@ -175,7 +311,7 @@ function renderBackground(){
      //columns to generate the checkered effect
      ctx.fillStyle = colorTwoH;
      for(var j = 0; j<numRow; j+=2){
-       console.log("in row")
+       //console.log("in row")
        for(var i = 0; i<numCol; i++){
          console.log(i); //debug
          ctx.fillRect(2*i*(canvas.width/numCol),(canvas.height/numRow)*j,canvas.width/numCol,canvas.height/numRow);
@@ -222,21 +358,69 @@ function renderBackground(){
      //var crossWidth = 40; //here would be user input
      //var crossHorOff = 0; //here would be user input
      //var crossVerOff = 0; //here would be user input
-     ctx.fillStyle = colorOneH;
-     ctx.fillRect(0, 0, canvas.width, canvas.height);
-     ctx.strokeStyle = colorTwoH;
+     /*ctx.strokeStyle = colorOneH; //change to object color
      ctx.beginPath();
      ctx.lineWidth = crossWidth;
      ctx.moveTo(0,(canvas.height/2)+crossVerOff);
      ctx.lineTo(canvas.width, (canvas.height/2)+crossVerOff);
      ctx.moveTo((canvas.width/2)+crossHorOff, 0);
      ctx.lineTo((canvas.width/2)+crossHorOff, canvas.height);
-     ctx.stroke();
-//==============================================================================
-
+     ctx.stroke();*/
+//===================================CANTON=====================================
+     /*ctx.fillStyle = colorOneH; //change to object color
+     ctx.fillRect = (0, 0, (canvas.width/2) * (cantonXScale/10), (canvas.height/2) * (cantonYScale/10));*/
      break;
+  }
+}
 
 
+//============================RENDER OVERLAYS===================================
+// Runs through all of the overlays and renders their associated type. Checks
+// if it should be rendered before hand. Should be called in render() so that
+// each time it is working off clean slate (straight onto background)
+
+function renderOverlays(){
+  for(var i = 0; i<10; i++){
+    if(overlayArray[i].rendered==1){
+      switch(overlayArray[i].type){
+        case 0:
+          console.log("border");
+          var bord = new border(); //gotta name it something different cuz fuck javascript
+          bord.index = i;
+          bord.render();
+          //Going to be handled withing object border() instead
+          /*ctx.beginPath();
+          ctx.lineWidth= borderWidth;
+          ctx.strokeStyle = overlayArray[i].colorOneH;
+          ctx.rect(0,0,canvas.width,canvas.height);
+          ctx.stroke();*/
+          break;
+        case 1:
+          console.log("cross");
+          var crss = new cross();
+          crss.index = i;
+          crss.render();
+          //Going to be handled withing object cross() instead
+          /*ctx.strokeStyle = overlayArray[i].colorOneH; //change to object color
+          ctx.beginPath();
+          ctx.lineWidth = crossWidth;
+          ctx.moveTo(0,(canvas.height/2)+crossVerOff);
+          ctx.lineTo(canvas.width, (canvas.height/2)+crossVerOff);
+          ctx.moveTo((canvas.width/2)+crossHorOff, 0);
+          ctx.lineTo((canvas.width/2)+crossHorOff, canvas.height);
+          ctx.stroke();*/
+          break;
+        case 2:
+          console.log("canton");
+          var cant = new canton();
+          cant.index = i;
+          cant.render();
+          //Going to be handled withing object canton() instead
+          /*ctx.fillStyle = overlayArray[i].colorOneH;
+          ctx.fillRect = (0, 0, (canvas.width/2) * (cantonXScale/10), (canvas.height/2) * (cantonYScale/10));*/
+          break;
+      }
+    }
   }
 }
 
@@ -349,6 +533,32 @@ function setRatio(ratioValue){
   render();
 }
 
+//==========================SET OVERLAY TYPE====================================
+//Sets the type of the specified overlay. To be called by the onchange of the
+//overlay type input field so that it re renders with the new type
+
+function setOverlayType(typeValue, index){
+  var i = index;
+  overlayArray[i].type = +typeValue.value;
+  console.log(overlayArray[i].type); //debug
+  switch (overlayArray[i].type) {
+     case 0:
+      console.log("border");
+      //overlayArray[i].type = 0;
+      break;
+     case 1:
+      console.log("cross");
+      //overlayArray[i].type = 1;
+      break;
+     case 2:
+      console.log("canton");
+      //overlayArray[i].type = 2;
+      break;
+  }
+  render();
+}
+
+
 //==============================SET COLUMN======================================
 //handles the input of number of columns, restriction of range happen on the
 //html side. Remember this is for the checkered background.
@@ -456,7 +666,8 @@ function setBarThreeW(barValue){
 }
 
 
-//==============================CROSS SETUP=====================================
+/*MUST BE CHANGED TO WORK WITH CROSS AS OBJECT FOR EACH OVERLAY
+//===============================SET CROSS======================================
 //handling for the cross: vertical and horizontal offset, and line width.
 
 
@@ -484,9 +695,14 @@ function setCrossWidth(crossWidthValue){
   console.log(crossWidth);
   render();
 }
+*/
 
 
 //=========================RGB to HEX CONVERTER=================================
+//taken from stackOverflow
+//in: ""(r, g, b)rgb"  out: ""#rrggbb"
+//converts (r, g, b)rgb value into hex format #xxxxxx to be used for drawing.
+
 function rgb2hex(rgb){
  rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
  return (rgb && rgb.length === 4) ? "#" +
@@ -496,7 +712,7 @@ function rgb2hex(rgb){
 }
 
 
-//================================jQuery========================================
+//********************************jQuery****************************************
 
 
 $(document).ready(function(){
@@ -568,4 +784,3 @@ document.documentElement.className = 'js';
      });
 
 });
-
